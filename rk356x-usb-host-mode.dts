@@ -1,0 +1,23 @@
+/dts-v1/;
+
+/ {
+    metadata {
+        title = "Set OTG port to Host mode";
+        compatible = "rockchip,rk3566@rockchip,rk3568";
+        category = "misc";
+        exclusive = "usbdrd_dwc3-dr_mode";
+        description = "Set OTG port to Host mode.\nUse this when you want to connect USB devices.";
+    };
+
+    fragment@0 {
+        target = <0xffffffff>;
+        __overlay__ {
+            status = "okay";
+            dr_mode = "host";
+        };
+    };
+
+    __fixups__ {
+        usbdrd_dwc3 = "/fragment@0:target:0";
+    };
+};
